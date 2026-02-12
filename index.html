@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp">
+  
+  <title>Pet Feeder Control</title>
+  
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pet Feeder Robot</h1>
+
+    <div class="card">
+      <h2>Pet Selection</h2>
+      <div class="flex">
+        <img id="petImg" class="pet-img" src="assets/cat.avif" alt="Cat">
+        <select id="petSelect">
+          <option value="cat">Cat</option>
+          <option value="dog">Dog</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div class="input-group">
+          <label for="timeInput">Time (optional for scheduled feeding)</label>
+          <input id="timeInput" type="time">
+        </div>
+        <div class="input-group">
+          <label for="qtyInput">Amount (g)</label>
+          <input id="qtyInput" type="number" placeholder="Quantity (g)" min="1" step="1" max="200">
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button id="feedNow">FEED NOW</button>
+        <div id="loading" class="loading">Loading...</div>
+      </div>
+
+      <h2>Scheduled Meals</h2>
+      <div id="scheduledMeals" class="scheduled-meals-container">
+        <div class="empty-state">No scheduled meals</div>
+      </div>
+
+      <h2>Status</h2>
+      <div id="statusBox" class="status">Loading status…</div>
+    </div>
+
+  </div>
+
+  <!-- Supabase JS v2 Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- External JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>

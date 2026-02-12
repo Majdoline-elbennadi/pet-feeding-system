@@ -1,0 +1,463 @@
+/**
+ * Pet Feeder Control System - Main Stylesheet
+ * Professional styling with mobile-first responsive design
+ */
+
+/* Reset and Base Styles */
+* { 
+  box-sizing: border-box; 
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body { 
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; 
+  background: #f8f5ef; 
+  margin: 0; 
+  padding: 8px;
+  min-height: 100vh;
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-start;
+}
+
+/* Container */
+.container { 
+  width: 100%; 
+  max-width: 900px; 
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Typography */
+h1 { 
+  color: #496f5d; 
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  margin: 8px 0 12px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+h2 { 
+  color: #496f5d; 
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+  margin: 12px 0 8px 0;
+  font-weight: 600;
+}
+
+/* Card Component */
+.card { 
+  background: #ffffff; 
+  border-left: 6px solid #8ec79f; 
+  padding: 16px; 
+  border-radius: 12px; 
+  margin-top: 12px; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Form Elements */
+select, input { 
+  padding: 12px; 
+  border-radius: 8px; 
+  border: 1px solid #cfcfcf; 
+  width: 100%; 
+  margin-top: 6px;
+  font-size: 16px; /* Prevents zoom on iOS */
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23496f5d' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+
+select:focus, input:focus {
+  outline: none;
+  border-color: #8ec79f;
+  box-shadow: 0 0 0 2px rgba(142, 199, 159, 0.2);
+}
+
+/* Buttons */
+button { 
+  background: #8ec79f; 
+  color: white; 
+  padding: 14px 20px; 
+  border: none; 
+  border-radius: 10px; 
+  font-size: 16px; 
+  font-weight: 600;
+  cursor: pointer; 
+  margin-top: 12px;
+  width: 100%;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+
+button:hover { 
+  background: #7ab78d; 
+}
+
+button:active {
+  transform: scale(0.97);
+  background: #6fa67f;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Layout Components */
+.row { 
+  display: flex; 
+  flex-wrap: wrap;
+  gap: 10px; 
+  margin-top: 10px;
+  width: 100%;
+}
+
+.row > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.button-row > button {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+
+/* Status Display */
+.status { 
+  background: #f0f5f0; 
+  border-radius: 10px; 
+  padding: 12px; 
+  margin-top: 12px; 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-line;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Loading Indicator */
+.loading { 
+  display: none; 
+  color: #496f5d;
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.loading.show {
+  display: inline-block;
+}
+
+/* Pet Image */
+.pet-img { 
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  flex-shrink: 0;
+  border: 2px solid #e8f5e9;
+}
+
+/* Flex Layouts */
+.flex { 
+  display: flex; 
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.flex > select {
+  flex: 1 1 0;
+  min-width: 0;
+  margin-top: 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 13px;
+  color: #496f5d;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+/* Scheduled Meals */
+.scheduled-meals-container {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+}
+
+.meal-item {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.meal-item:hover {
+  background: #f0f5f0;
+  border-color: #8ec79f;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.meal-item.selected {
+  background: #e8f5e9;
+  border: 2px solid #8ec79f;
+  box-shadow: 0 2px 8px rgba(142, 199, 159, 0.3);
+}
+
+.meal-info {
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+.meal-info .meal-time {
+  font-weight: 600;
+  color: #496f5d;
+  font-size: 14px;
+}
+
+.meal-info .meal-details {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.meal-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 0;
+  width: auto;
+  min-width: 80px;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+.btn-delete:active {
+  background: #a93226;
+}
+
+/* Mobile First - Small phones */
+@media (max-width: 360px) {
+  body {
+    padding: 4px;
+  }
+  
+  .card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+    margin: 6px 0 10px 0;
+  }
+  
+  h2 {
+    font-size: 1rem;
+    margin: 10px 0 6px 0;
+  }
+  
+  .pet-img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  select, input {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  .status {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+/* Mobile - Standard phones */
+@media (max-width: 480px) {
+  body {
+    padding: 6px;
+  }
+  
+  .container {
+    width: 100%;
+  }
+  
+  .card {
+    padding: 14px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin: 8px 0;
+  }
+  
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .row > * {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  
+  .button-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .button-row > button {
+    width: 100%;
+  }
+  
+  .loading {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .pet-img {
+    align-self: center;
+    margin: 0;
+  }
+  
+  .flex > select {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  
+  select, input {
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .status {
+    font-size: 12px;
+  }
+  
+  .meal-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .meal-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  
+  .btn-delete {
+    width: 100%;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+  
+  .card {
+    padding: 18px;
+  }
+  
+  .row {
+    gap: 12px;
+  }
+  
+  .button-row {
+    gap: 12px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  body {
+    padding: 20px;
+  }
+  
+  .card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+}
+
